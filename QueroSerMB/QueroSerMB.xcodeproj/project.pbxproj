@@ -22,6 +22,9 @@
 		92D2C23F2C90E7F000467440 /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C2382C90E7F000467440 /* MainService.swift */; };
 		92D2C5C72C90E8CE00467440 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5C62C90E8CE00467440 /* ViewController.swift */; };
 		92D2C5CA2C90E94300467440 /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5C92C90E94300467440 /* ViewConfiguration.swift */; };
+		92D2C5CD2C90EE9E00467440 /* CoreNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5CC2C90EE9E00467440 /* CoreNetwork.swift */; };
+		92D2C5CF2C90EEB100467440 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5CE2C90EEB100467440 /* Router.swift */; };
+		92D2C5D12C90EEC400467440 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5D02C90EEC400467440 /* ServiceError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		92D2C2382C90E7F000467440 /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 		92D2C5C62C90E8CE00467440 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		92D2C5C92C90E94300467440 /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
+		92D2C5CC2C90EE9E00467440 /* CoreNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreNetwork.swift; sourceTree = "<group>"; };
+		92D2C5CE2C90EEB100467440 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		92D2C5D02C90EEC400467440 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +169,7 @@
 		92D2C5C42C90E8B000467440 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				92D2C5CB2C90EE7700467440 /* Network */,
 				92D2C5C82C90E92D00467440 /* Protocols */,
 				92D2C5C52C90E8BC00467440 /* Extensions */,
 			);
@@ -183,6 +190,16 @@
 				92D2C5C92C90E94300467440 /* ViewConfiguration.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		92D2C5CB2C90EE7700467440 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				92D2C5CC2C90EE9E00467440 /* CoreNetwork.swift */,
+				92D2C5CE2C90EEB100467440 /* Router.swift */,
+				92D2C5D02C90EEC400467440 /* ServiceError.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,8 +336,11 @@
 				92D2C2392C90E7F000467440 /* MainCoordinator.swift in Sources */,
 				92D2C23A2C90E7F000467440 /* MainFactory.swift in Sources */,
 				92D2C23B2C90E7F000467440 /* MainPresenter.swift in Sources */,
+				92D2C5CF2C90EEB100467440 /* Router.swift in Sources */,
+				92D2C5CD2C90EE9E00467440 /* CoreNetwork.swift in Sources */,
 				92D2C23C2C90E7F000467440 /* MainViewController.swift in Sources */,
 				92D2C23D2C90E7F000467440 /* MainInteractor.swift in Sources */,
+				92D2C5D12C90EEC400467440 /* ServiceError.swift in Sources */,
 				92D2C23F2C90E7F000467440 /* MainService.swift in Sources */,
 				92D2C2012C90E6C000467440 /* AppDelegate.swift in Sources */,
 				92D2C2032C90E6C000467440 /* SceneDelegate.swift in Sources */,
