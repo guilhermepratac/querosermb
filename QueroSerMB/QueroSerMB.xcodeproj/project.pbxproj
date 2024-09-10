@@ -25,6 +25,10 @@
 		92D2C5CD2C90EE9E00467440 /* CoreNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5CC2C90EE9E00467440 /* CoreNetwork.swift */; };
 		92D2C5CF2C90EEB100467440 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5CE2C90EEB100467440 /* Router.swift */; };
 		92D2C5D12C90EEC400467440 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5D02C90EEC400467440 /* ServiceError.swift */; };
+		92D2C5D52C910FCF00467440 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5D42C910FCF00467440 /* Colors.swift */; };
+		92D2C5D72C910FF700467440 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5D62C910FF700467440 /* Spacing.swift */; };
+		92D2C5DC2C9112BF00467440 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5DB2C9112BF00467440 /* Typography.swift */; };
+		92D2C5DF2C91130300467440 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5DE2C91130300467440 /* UIColor+Hex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,10 @@
 		92D2C5CC2C90EE9E00467440 /* CoreNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreNetwork.swift; sourceTree = "<group>"; };
 		92D2C5CE2C90EEB100467440 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		92D2C5D02C90EEC400467440 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		92D2C5D42C910FCF00467440 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		92D2C5D62C910FF700467440 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		92D2C5DB2C9112BF00467440 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		92D2C5DE2C91130300467440 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +125,7 @@
 		92D2C1FF2C90E6C000467440 /* QueroSerMB */ = {
 			isa = PBXGroup;
 			children = (
+				92D2C5D32C910F3600467440 /* DesignSystem */,
 				92D2C5C42C90E8B000467440 /* Core */,
 				92D2C2302C90E7E000467440 /* Scenes */,
 				92D2C2002C90E6C000467440 /* AppDelegate.swift */,
@@ -169,27 +178,11 @@
 		92D2C5C42C90E8B000467440 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				92D2C5DD2C9112ED00467440 /* Extensions */,
+				92D2C5D22C910F1B00467440 /* Base */,
 				92D2C5CB2C90EE7700467440 /* Network */,
-				92D2C5C82C90E92D00467440 /* Protocols */,
-				92D2C5C52C90E8BC00467440 /* Extensions */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		92D2C5C52C90E8BC00467440 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				92D2C5C62C90E8CE00467440 /* ViewController.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		92D2C5C82C90E92D00467440 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				92D2C5C92C90E94300467440 /* ViewConfiguration.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		92D2C5CB2C90EE7700467440 /* Network */ = {
@@ -200,6 +193,41 @@
 				92D2C5D02C90EEC400467440 /* ServiceError.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		92D2C5D22C910F1B00467440 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				92D2C5C92C90E94300467440 /* ViewConfiguration.swift */,
+				92D2C5C62C90E8CE00467440 /* ViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		92D2C5D32C910F3600467440 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				92D2C5D82C91104A00467440 /* Base */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		92D2C5D82C91104A00467440 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				92D2C5D42C910FCF00467440 /* Colors.swift */,
+				92D2C5D62C910FF700467440 /* Spacing.swift */,
+				92D2C5DB2C9112BF00467440 /* Typography.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		92D2C5DD2C9112ED00467440 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				92D2C5DE2C91130300467440 /* UIColor+Hex.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,7 +362,11 @@
 			files = (
 				92D2C5C72C90E8CE00467440 /* ViewController.swift in Sources */,
 				92D2C2392C90E7F000467440 /* MainCoordinator.swift in Sources */,
+				92D2C5DC2C9112BF00467440 /* Typography.swift in Sources */,
+				92D2C5D72C910FF700467440 /* Spacing.swift in Sources */,
+				92D2C5DF2C91130300467440 /* UIColor+Hex.swift in Sources */,
 				92D2C23A2C90E7F000467440 /* MainFactory.swift in Sources */,
+				92D2C5D52C910FCF00467440 /* Colors.swift in Sources */,
 				92D2C23B2C90E7F000467440 /* MainPresenter.swift in Sources */,
 				92D2C5CF2C90EEB100467440 /* Router.swift in Sources */,
 				92D2C5CD2C90EE9E00467440 /* CoreNetwork.swift in Sources */,
