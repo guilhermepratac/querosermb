@@ -29,6 +29,12 @@
 		92D2C5D72C910FF700467440 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5D62C910FF700467440 /* Spacing.swift */; };
 		92D2C5DC2C9112BF00467440 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5DB2C9112BF00467440 /* Typography.swift */; };
 		92D2C5DF2C91130300467440 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5DE2C91130300467440 /* UIColor+Hex.swift */; };
+		92D2C5E42C9114AE00467440 /* ExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5E32C9114AE00467440 /* ExchangeCell.swift */; };
+		92D2C5E62C9115CD00467440 /* ExchangeCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5E52C9115CD00467440 /* ExchangeCellModel.swift */; };
+		92D2C5E82C9116EC00467440 /* ExchangeListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5E72C9116EC00467440 /* ExchangeListTableView.swift */; };
+		92D2C5EA2C912EE200467440 /* UIView+RoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5E92C912EE200467440 /* UIView+RoundCorners.swift */; };
+		92D2C5EC2C912F0200467440 /* Corners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5EB2C912F0200467440 /* Corners.swift */; };
+		92D2C5EE2C9130F900467440 /* UIImage+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C5ED2C9130F900467440 /* UIImage+Download.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +81,12 @@
 		92D2C5D62C910FF700467440 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		92D2C5DB2C9112BF00467440 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		92D2C5DE2C91130300467440 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		92D2C5E32C9114AE00467440 /* ExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCell.swift; sourceTree = "<group>"; };
+		92D2C5E52C9115CD00467440 /* ExchangeCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCellModel.swift; sourceTree = "<group>"; };
+		92D2C5E72C9116EC00467440 /* ExchangeListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeListTableView.swift; sourceTree = "<group>"; };
+		92D2C5E92C912EE200467440 /* UIView+RoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RoundCorners.swift"; sourceTree = "<group>"; };
+		92D2C5EB2C912F0200467440 /* Corners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Corners.swift; sourceTree = "<group>"; };
+		92D2C5ED2C9130F900467440 /* UIImage+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Download.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +219,7 @@
 		92D2C5D32C910F3600467440 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				92D2C5E02C9113F300467440 /* Components */,
 				92D2C5D82C91104A00467440 /* Base */,
 			);
 			path = DesignSystem;
@@ -218,6 +231,7 @@
 				92D2C5D42C910FCF00467440 /* Colors.swift */,
 				92D2C5D62C910FF700467440 /* Spacing.swift */,
 				92D2C5DB2C9112BF00467440 /* Typography.swift */,
+				92D2C5EB2C912F0200467440 /* Corners.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -226,8 +240,36 @@
 			isa = PBXGroup;
 			children = (
 				92D2C5DE2C91130300467440 /* UIColor+Hex.swift */,
+				92D2C5E92C912EE200467440 /* UIView+RoundCorners.swift */,
+				92D2C5ED2C9130F900467440 /* UIImage+Download.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		92D2C5E02C9113F300467440 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				92D2C5E12C9113FB00467440 /* TableView */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		92D2C5E12C9113FB00467440 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				92D2C5E22C91140300467440 /* ExchangeList */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		92D2C5E22C91140300467440 /* ExchangeList */ = {
+			isa = PBXGroup;
+			children = (
+				92D2C5E32C9114AE00467440 /* ExchangeCell.swift */,
+				92D2C5E52C9115CD00467440 /* ExchangeCellModel.swift */,
+				92D2C5E72C9116EC00467440 /* ExchangeListTableView.swift */,
+			);
+			path = ExchangeList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,15 +402,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D2C5EA2C912EE200467440 /* UIView+RoundCorners.swift in Sources */,
+				92D2C5E42C9114AE00467440 /* ExchangeCell.swift in Sources */,
+				92D2C5EC2C912F0200467440 /* Corners.swift in Sources */,
 				92D2C5C72C90E8CE00467440 /* ViewController.swift in Sources */,
 				92D2C2392C90E7F000467440 /* MainCoordinator.swift in Sources */,
 				92D2C5DC2C9112BF00467440 /* Typography.swift in Sources */,
 				92D2C5D72C910FF700467440 /* Spacing.swift in Sources */,
+				92D2C5E62C9115CD00467440 /* ExchangeCellModel.swift in Sources */,
 				92D2C5DF2C91130300467440 /* UIColor+Hex.swift in Sources */,
 				92D2C23A2C90E7F000467440 /* MainFactory.swift in Sources */,
+				92D2C5E82C9116EC00467440 /* ExchangeListTableView.swift in Sources */,
 				92D2C5D52C910FCF00467440 /* Colors.swift in Sources */,
 				92D2C23B2C90E7F000467440 /* MainPresenter.swift in Sources */,
 				92D2C5CF2C90EEB100467440 /* Router.swift in Sources */,
+				92D2C5EE2C9130F900467440 /* UIImage+Download.swift in Sources */,
 				92D2C5CD2C90EE9E00467440 /* CoreNetwork.swift in Sources */,
 				92D2C23C2C90E7F000467440 /* MainViewController.swift in Sources */,
 				92D2C23D2C90E7F000467440 /* MainInteractor.swift in Sources */,
