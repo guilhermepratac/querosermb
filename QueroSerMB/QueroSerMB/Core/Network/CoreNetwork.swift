@@ -34,7 +34,8 @@ class CoreNetwork: CoreNetworkProtocol {
                 let decodedObject = try JSONDecoder().decode(T.self, from: data)
 
                 completion(.success(decodedObject))
-            } catch {
+            } catch (let error){
+                print(error)
                 completion(.failure(.decodeError))
             }
         }.resume()

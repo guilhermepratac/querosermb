@@ -19,7 +19,7 @@ final class MainViewController: ViewController<MainInteracting> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        interactor.loadSomething()
+        interactor.load()
     }
 
     override func buildViewHierarchy() {

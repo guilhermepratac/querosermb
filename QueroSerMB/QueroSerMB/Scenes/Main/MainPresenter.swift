@@ -1,7 +1,7 @@
 import UIKit
 
 protocol MainPresenting: AnyObject {
-    func displaySomething()
+    func presentExchangeList(exchanges: [Exchange], logos: [ExchangeLogo])
     func didNextStep()
 }
 
@@ -16,8 +16,14 @@ final class MainPresenter {
 
 // MARK: - MainPresenting
 extension MainPresenter: MainPresenting {
-    func displaySomething() {
-        viewController?.displayExchanges(exchanges: [createModel(), createModel(), createModel()])
+    func presentExchangeList(exchanges: [Exchange], logos: [ExchangeLogo]) {
+        let list = exchanges.map { model in
+            let logo = logos.first(where: { $0.exchangeId == model.exchangeId })
+            
+            return createModel(with: model, and: logo?.url ?? "")
+        }
+        
+        viewController?.displayExchanges(exchanges: list)
     }
     
     func didNextStep() {
@@ -27,12 +33,12 @@ extension MainPresenter: MainPresenting {
 
 // MARK: Helpers
 extension MainPresenter {
-    private func createModel() -> ExchangeCellModel {
+    private func createModel(with exchange: Exchange, and logo: String) -> ExchangeCellModel {
         return ExchangeCellModel(
-            icon: "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_512/5fbfbd742fb64c67a3963ebd7265f9f3.png",
-            name: "Bitcoin",
-            exchange: "ID: Bitcoin",
-            price: "$16"
+            icon: logo,
+            name: exchange.name ?? " ",
+            exchange: exchange.exchangeId,
+            price: "\(exchange.dailyVolumeUsd)"
         )
     }
 }

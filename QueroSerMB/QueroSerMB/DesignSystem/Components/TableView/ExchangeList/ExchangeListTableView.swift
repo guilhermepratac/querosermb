@@ -61,8 +61,10 @@ class ExchangeListTableView: UIView {
     
     // MARK: - Public Methods
     func updateData(_ model: [ExchangeCellModel]) {
-        self.model = model
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.model = model
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -78,7 +80,7 @@ extension ExchangeListTableView: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let model = model[indexPath.row]
+        let model = model[indexPath.section]
         cell.configure(with: model)
         
         return cell

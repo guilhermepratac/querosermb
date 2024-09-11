@@ -11,6 +11,7 @@ import Foundation
 enum Router {
 
     case getExchanges
+    case getExchangesLogos
 
     static private let baseURL: String = "https://rest.coinapi.io/v1"
     static private let apiKey: String = ""
@@ -23,6 +24,8 @@ enum Router {
         switch self {
         case .getExchanges:
             return "/exchanges"
+        case .getExchangesLogos:
+            return "/exchanges/icons/40"
         }
     }
 

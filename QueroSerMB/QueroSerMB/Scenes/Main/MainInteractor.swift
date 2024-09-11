@@ -1,7 +1,7 @@
 import Foundation
 
 protocol MainInteracting: AnyObject {
-    func loadSomething()
+    func load()
 }
 
 final class MainInteractor {
@@ -17,7 +17,15 @@ final class MainInteractor {
 
 // MARK: - MainInteracting
 extension MainInteractor: MainInteracting {
-    func loadSomething() {
-        presenter.displaySomething()
+    func load() {
+        Task {
+            do {
+                let exchanges = try await service.loadExchanges()
+                let logos = try await service.loadExchangesLogos()
+                self.presenter.presentExchangeList(exchanges: exchanges, logos: logos)
+            } catch(let error) {
+               print(error)
+            }
+        }
     }
 }

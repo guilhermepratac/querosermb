@@ -2,7 +2,8 @@ import UIKit
 
 enum MainFactory {
     static func make() -> UIViewController {
-        let service = MainService()
+        let coreNetwork = CoreNetwork()
+        let service = MainService(coreService: coreNetwork)
         let coordinator = MainCoordinator()
         let presenter = MainPresenter(coordinator: coordinator)
         let interactor = MainInteractor(service: service, presenter: presenter)
