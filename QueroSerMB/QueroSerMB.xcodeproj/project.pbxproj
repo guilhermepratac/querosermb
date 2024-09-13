@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		921C7CCD2C94B7B100FF1E17 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C7CC62C94B7B100FF1E17 /* DetailCoordinator.swift */; };
+		921C7CCE2C94B7B100FF1E17 /* DetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C7CC72C94B7B100FF1E17 /* DetailFactory.swift */; };
+		921C7CCF2C94B7B100FF1E17 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C7CC82C94B7B100FF1E17 /* DetailPresenter.swift */; };
+		921C7CD02C94B7B100FF1E17 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C7CC92C94B7B100FF1E17 /* DetailViewController.swift */; };
+		921C7CD12C94B7B100FF1E17 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C7CCA2C94B7B100FF1E17 /* DetailInteractor.swift */; };
+		921C7CD32C94B7B100FF1E17 /* DetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C7CCC2C94B7B100FF1E17 /* DetailService.swift */; };
 		92D2C2012C90E6C000467440 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C2002C90E6C000467440 /* AppDelegate.swift */; };
 		92D2C2032C90E6C000467440 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C2022C90E6C000467440 /* SceneDelegate.swift */; };
 		92D2C20A2C90E6C100467440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92D2C2092C90E6C100467440 /* Assets.xcassets */; };
@@ -57,6 +63,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		921C7CC62C94B7B100FF1E17 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
+		921C7CC72C94B7B100FF1E17 /* DetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFactory.swift; sourceTree = "<group>"; };
+		921C7CC82C94B7B100FF1E17 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
+		921C7CC92C94B7B100FF1E17 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		921C7CCA2C94B7B100FF1E17 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
+		921C7CCC2C94B7B100FF1E17 /* DetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailService.swift; sourceTree = "<group>"; };
 		92D2C1FD2C90E6C000467440 /* QueroSerMB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QueroSerMB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D2C2002C90E6C000467440 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92D2C2022C90E6C000467440 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +130,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		921C7CC52C94B79D00FF1E17 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				921C7CC62C94B7B100FF1E17 /* DetailCoordinator.swift */,
+				921C7CC72C94B7B100FF1E17 /* DetailFactory.swift */,
+				921C7CC82C94B7B100FF1E17 /* DetailPresenter.swift */,
+				921C7CC92C94B7B100FF1E17 /* DetailViewController.swift */,
+				921C7CCA2C94B7B100FF1E17 /* DetailInteractor.swift */,
+				921C7CCC2C94B7B100FF1E17 /* DetailService.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		92D2C1F42C90E6C000467440 = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +199,7 @@
 		92D2C2302C90E7E000467440 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				921C7CC52C94B79D00FF1E17 /* Detail */,
 				92D2C2312C90E7E700467440 /* Main */,
 			);
 			path = Scenes;
@@ -424,6 +450,12 @@
 				92D2C2392C90E7F000467440 /* MainCoordinator.swift in Sources */,
 				92D2C5DC2C9112BF00467440 /* Typography.swift in Sources */,
 				92D2C5D72C910FF700467440 /* Spacing.swift in Sources */,
+				921C7CCD2C94B7B100FF1E17 /* DetailCoordinator.swift in Sources */,
+				921C7CCE2C94B7B100FF1E17 /* DetailFactory.swift in Sources */,
+				921C7CCF2C94B7B100FF1E17 /* DetailPresenter.swift in Sources */,
+				921C7CD02C94B7B100FF1E17 /* DetailViewController.swift in Sources */,
+				921C7CD12C94B7B100FF1E17 /* DetailInteractor.swift in Sources */,
+				921C7CD32C94B7B100FF1E17 /* DetailService.swift in Sources */,
 				92D2C5E62C9115CD00467440 /* ExchangeCellModel.swift in Sources */,
 				92D2C5DF2C91130300467440 /* UIColor+Hex.swift in Sources */,
 				92D2C23A2C90E7F000467440 /* MainFactory.swift in Sources */,
