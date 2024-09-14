@@ -10,6 +10,7 @@ final class MainInteractor {
     private let service: MainServicing
     private let presenter: MainPresenting
     private var exchanges: [Exchange] = []
+    private var logos: [ExchangeLogo] = []
 
     init(service: MainServicing, presenter: MainPresenting) {
         self.service = service
@@ -20,14 +21,17 @@ final class MainInteractor {
 // MARK: - MainInteracting
 extension MainInteractor: MainInteracting {
     func didTapCell(index: Int) {
-        presenter.presentDetail(with: exchanges[index].exchangeId)
+        let exchange = exchanges[index]
+        let logo = logos.first(where: { $0.exchangeId == exchange.exchangeId })
+
+        presenter.presentDetail(with: exchanges[index], and: logo)
     }
     
     func load() {
         Task {
             do {
                 self.exchanges = try await service.loadExchanges()
-                let logos = try await service.loadExchangesLogos()
+                self.logos = try await service.loadExchangesLogos()
                 self.presenter.presentExchangeList(exchanges: exchanges, logos: logos)
             } catch(let error) {
                print(error)

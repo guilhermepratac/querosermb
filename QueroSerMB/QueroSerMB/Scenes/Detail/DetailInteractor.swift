@@ -1,23 +1,23 @@
 protocol DetailInteracting: AnyObject {
-    func loadSomething()
+    func load()
 }
 
 final class DetailInteractor {
     private let service: DetailServicing
     private let presenter: DetailPresenting
-    private let exchangeID: String
+    private let exchange: ExchangeDetail
 
-    init(service: DetailServicing, presenter: DetailPresenting, exchangeID: String) {
+    init(service: DetailServicing, presenter: DetailPresenting, exchange: ExchangeDetail) {
         self.service = service
         self.presenter = presenter
-        self.exchangeID = exchangeID
+        self.exchange = exchange
     }
     
 }
 
 // MARK: - DetailInteracting
 extension DetailInteractor: DetailInteracting {
-    func loadSomething() {
-        presenter.displaySomething()
+    func load() {
+        self.presenter.displayDetail(with: exchange)
     }
 }

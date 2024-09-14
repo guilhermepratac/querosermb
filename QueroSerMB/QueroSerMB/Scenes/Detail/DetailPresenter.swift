@@ -1,6 +1,5 @@
 protocol DetailPresenting: AnyObject {
-    func displaySomething()
-    func didNextStep()
+    func displayDetail(with model: ExchangeDetail)
 }
 
 final class DetailPresenter {
@@ -14,16 +13,12 @@ final class DetailPresenter {
 
 // MARK: - DetailPresenting
 extension DetailPresenter: DetailPresenting {
-    func displaySomething() {
+    func displayDetail(with model: ExchangeDetail) {
         viewController?.displayDetail(
-            urlImage: "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_512/5503eb9673f9437988702f06cbd7072b.png",
-                                      name: "Bitcoin",
-                                      exchangeID: "ID",
-                                      price: "30 REAIS"
+            urlImage: model.urlImage,
+            name: model.name,
+            exchangeID: model.exchangeId,
+            price: model.dailyVolumeUsd
         )
-    }
-    
-    func didNextStep() {
-        coordinator.openSomething()
     }
 }

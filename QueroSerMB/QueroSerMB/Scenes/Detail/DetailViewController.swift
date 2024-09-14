@@ -69,7 +69,7 @@ final class DetailViewController: ViewController<DetailInteracting> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        interactor.loadSomething()
+        interactor.load()
     }
 
     override func buildViewHierarchy() { 

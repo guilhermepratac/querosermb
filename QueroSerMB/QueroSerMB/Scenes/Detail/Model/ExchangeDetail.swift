@@ -1,18 +1,12 @@
-//
-//  Exchange.swift
-//  QueroSerMB
-//
-//  Created by Guilherme Prata Costa on 10/09/24.
-//
-
 import Foundation
 
-struct Exchange: Decodable, Equatable {
-    let name: String?
+struct ExchangeDetail {
+    let urlImage: String?
+    let name: String
     let exchangeId: String
-    let dailyVolumeUsd: Double
-    let hourVolumeUsd: Double
-    let monthVolumeUsd: Double
+    let hourVolumeUsd: String
+    let dailyVolumeUsd: String
+    let monthVolumeUsd: String
 
     enum CodingKeys: String, CodingKey {
         case exchangeId = "exchange_id"
@@ -22,3 +16,5 @@ struct Exchange: Decodable, Equatable {
         case name
     }
 }
+
+

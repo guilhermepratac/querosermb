@@ -2,7 +2,7 @@ import UIKit
 
 protocol MainPresenting: AnyObject {
     func presentExchangeList(exchanges: [Exchange], logos: [ExchangeLogo])
-    func presentDetail(with id: String)
+    func presentDetail(with exchange: Exchange, and logo: ExchangeLogo?)
 }
 
 final class MainPresenter {
@@ -16,8 +16,16 @@ final class MainPresenter {
 
 // MARK: - MainPresenting
 extension MainPresenter: MainPresenting {
-    func presentDetail(with id: String) {
-        coordinator.openExchangeDetail(with: id)
+    func presentDetail(with exchange: Exchange, and logo: ExchangeLogo?) {
+        let detail = ExchangeDetail(
+            urlImage: logo?.url,
+            name: exchange.name ?? exchange.exchangeId,
+            exchangeId: exchange.exchangeId,
+            hourVolumeUsd: exchange.hourVolumeUsd.toCurrency(),
+            dailyVolumeUsd: exchange.dailyVolumeUsd.toCurrency(),
+            monthVolumeUsd: exchange.monthVolumeUsd.toCurrency()
+        )
+        coordinator.openExchangeDetail(with: detail)
     }
     
     func presentExchangeList(exchanges: [Exchange], logos: [ExchangeLogo]) {
