@@ -1,7 +1,9 @@
-protocol DetailServicing {
-    typealias ExchangeDetailResult = Result<Exchange, ServiceError>
+import Foundation
 
-    func getExchangeDetail(id: String, _ completion: @escaping (ExchangeDetailResult) -> Void)
+protocol DetailServicing {
+    typealias ExchangeDetailResult = Result<[OHLCVData], ServiceError>
+
+    func getOhlcv(spot: String,timeStart: String, timeEnd: String,  _ completion: @escaping (ExchangeDetailResult) -> Void)
 }
 
 final class DetailService {
@@ -14,8 +16,9 @@ final class DetailService {
 
 // MARK: - DetailServicing
 extension DetailService: DetailServicing {
-    func getExchangeDetail(id: String, _ completion: @escaping (ExchangeDetailResult) -> Void) {
-        coreService.get(request: Router.getExchangeById(id: id).getRequest, of: Exchange.self) { result in
+    func getOhlcv(spot: String, timeStart: String, timeEnd: String, _ completion: @escaping (ExchangeDetailResult) -> Void) {
+        let request = Router.getOhlcvBySpot(spot: spot, timeStart: timeStart, timeEnd: timeEnd).getRequest
+        coreService.get(request: request, of: [OHLCVData].self) { result in
             completion(result)
         }
     }

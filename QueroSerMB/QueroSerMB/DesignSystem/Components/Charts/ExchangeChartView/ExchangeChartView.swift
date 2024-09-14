@@ -79,21 +79,6 @@ class ExchangeChartView: UIView {
         xAxisLayer.strokeColor = UIColor.white.cgColor
         xAxisLayer.lineWidth = 1
         layer.addSublayer(xAxisLayer)
-        
-        // Add X-axis labels
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/yy"
-        for (_, dataPoint) in data.enumerated() {
-            let x = CGFloat((dataPoint.0.timeIntervalSince1970 - minX) / (maxX - minX)) * chartRect.width + chartRect.minX
-            
-            let label = UILabel()
-            label.text = dateFormatter.string(from: dataPoint.0)
-            label.font = UIFont.systemFont(ofSize: 12)
-            label.textColor = .white
-            label.sizeToFit()
-            label.frame.origin = CGPoint(x: x - label.frame.width / 2, y: chartRect.maxY + 5)
-            addSubview(label)
-        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -139,7 +124,7 @@ class ExchangeChartView: UIView {
     }
     
     private func updateVerticalLine(at x: CGFloat) {
-        let chartInsets = UIEdgeInsets(top: 20, left: 40, bottom: 40, right: 20)
+        let chartInsets = UIEdgeInsets(top: 20, left: 20, bottom: 40, right: 20)
         let chartRect = bounds.inset(by: chartInsets)
         
         let path = UIBezierPath()
@@ -149,7 +134,7 @@ class ExchangeChartView: UIView {
     }
     
     private func getDataPoint(for point: CGPoint) -> (Date, Double)? {
-        let chartInsets = UIEdgeInsets(top: 20, left: 40, bottom: 40, right: 20)
+        let chartInsets = UIEdgeInsets(top: 20, left: 20, bottom: 40, right: 20)
         let chartRect = bounds.inset(by: chartInsets)
         
         let maxX = data.map { $0.0.timeIntervalSince1970 }.max() ?? 0

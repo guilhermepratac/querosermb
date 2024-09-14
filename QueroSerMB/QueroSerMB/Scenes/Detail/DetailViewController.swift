@@ -2,6 +2,7 @@ import UIKit
 
 protocol DetailDisplaying: AnyObject {
     func displayDetail(urlImage: String?, name: String, exchangeID: String, price: String)
+    func displayChart(data: [(Date, Double)])
 }
 
 private extension DetailViewController.Layout {
@@ -18,14 +19,6 @@ final class DetailViewController: ViewController<DetailInteracting> {
     
     private let chartView = ExchangeChartView()
     private let valueLabel = UILabel()
-
-    private let chartData: [(Date, Double)] = [
-        (Date(timeIntervalSince1970: 1633046400), 150000),
-        (Date(timeIntervalSince1970: 1640995200), 225000),
-        (Date(timeIntervalSince1970: 1648771200), 350000),
-        (Date(timeIntervalSince1970: 1656633600), 325000),
-        (Date(timeIntervalSince1970: 1664582400), 334763.63)
-    ]
     
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
@@ -114,17 +107,23 @@ final class DetailViewController: ViewController<DetailInteracting> {
     }
     
     private func updateValueLabel(date: Date, value: Double) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        let dateString = dateFormatter.string(from: date)
-        let valueString = String(format: "%.2f", value)
+        let dateString = date.toString(format: .displayFormat)
         
-        valueLabel.text = "Date: \(dateString), Value: R$ \(valueString)"
+        valueLabel.text = "Date: \(dateString), Price: \(value.toCurrency(.usd))"
     }
 }
 
 // MARK: - DetailDisplaying
 extension DetailViewController: DetailDisplaying {
+    func displayChart(data: [(Date, Double)]) {
+        DispatchQueue.main.async {
+            self.chartView.data = data
+            self.chartView.onPointSelected = { [weak self] date, value in
+                self?.updateValueLabel(date: date, value: value)
+            }
+        }
+    }
+    
     func displayDetail(urlImage: String?, name: String, exchangeID: String, price: String) {
         if let url = urlImage {
             iconImageView.loadImage(from: url)
@@ -132,10 +131,5 @@ extension DetailViewController: DetailDisplaying {
         nameLabel.text = name
         exchangeIDLabel.text = exchangeID
         priceLabel.text = price
-        
-        chartView.data = chartData
-        chartView.onPointSelected = { [weak self] date, value in
-            self?.updateValueLabel(date: date, value: value)
-        }
     }
 }
