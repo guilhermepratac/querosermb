@@ -16,14 +16,26 @@ final class DetailViewController: ViewController<DetailInteracting> {
     private let exchangeIDLabel = UILabel()
     private let priceLabel = UILabel()
     
+    private let chartView = ExchangeChartView()
+    private let valueLabel = UILabel()
+
+    private let chartData: [(Date, Double)] = [
+        (Date(timeIntervalSince1970: 1633046400), 150000),
+        (Date(timeIntervalSince1970: 1640995200), 225000),
+        (Date(timeIntervalSince1970: 1648771200), 350000),
+        (Date(timeIntervalSince1970: 1656633600), 325000),
+        (Date(timeIntervalSince1970: 1664582400), 334763.63)
+    ]
     
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             headerStackView,
-            priceLabel
+            priceLabel,
+            chartView,
+            valueLabel
         ])
         stackView.axis = .vertical
-        stackView.alignment = .top
+        stackView.alignment = .fill
         stackView.spacing = Spacing.space2
         return stackView
     }()
@@ -66,14 +78,17 @@ final class DetailViewController: ViewController<DetailInteracting> {
     
     override func setupConstraints() { 
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
+        chartView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             contentStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Spacing.space3),
             contentStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Spacing.space3),
             contentStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Spacing.space3),
             
-            iconImageView.widthAnchor.constraint(equalToConstant: 40),
-            iconImageView.heightAnchor.constraint(equalToConstant: 40)
+            iconImageView.widthAnchor.constraint(equalToConstant: 60),
+            iconImageView.heightAnchor.constraint(equalToConstant: 60),
+            
+            chartView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
     
@@ -93,6 +108,18 @@ final class DetailViewController: ViewController<DetailInteracting> {
         priceLabel.font = Typography.bodyFont
         priceLabel.textColor = Colors.textPrimary.color
         
+        valueLabel.font = Typography.bodyFont
+        valueLabel.textColor = Colors.textPrimary.color
+        valueLabel.textAlignment = .center
+    }
+    
+    private func updateValueLabel(date: Date, value: Double) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let dateString = dateFormatter.string(from: date)
+        let valueString = String(format: "%.2f", value)
+        
+        valueLabel.text = "Date: \(dateString), Value: R$ \(valueString)"
     }
 }
 
@@ -105,5 +132,10 @@ extension DetailViewController: DetailDisplaying {
         nameLabel.text = name
         exchangeIDLabel.text = exchangeID
         priceLabel.text = price
+        
+        chartView.data = chartData
+        chartView.onPointSelected = { [weak self] date, value in
+            self?.updateValueLabel(date: date, value: value)
+        }
     }
 }
