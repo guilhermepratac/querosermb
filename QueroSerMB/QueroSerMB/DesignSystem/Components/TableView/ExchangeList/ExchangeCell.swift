@@ -21,7 +21,15 @@ class ExchangeCell: UITableViewCell {
         ])
         stackView.axis = .horizontal
         stackView.alignment = .top
-        stackView.spacing = 12
+        stackView.spacing = Spacing.space2
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = UIEdgeInsets(
+            top: Spacing.space4,
+            left: Spacing.space4,
+            bottom: Spacing.space4,
+            right: Spacing.space4
+        )
+        
         return stackView
     }()
     
@@ -33,7 +41,7 @@ class ExchangeCell: UITableViewCell {
         ])
         stackView.axis = .vertical
         stackView.alignment = .top
-        stackView.spacing = 8
+        stackView.spacing = Spacing.space1
         return stackView
     }()
     
@@ -70,9 +78,9 @@ extension ExchangeCell: ViewConfiguration {
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Spacing.space3),
-            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Spacing.space3),
-            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Spacing.space3),
+            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Spacing.space3),
             
             iconImageView.widthAnchor.constraint(equalToConstant: 40),
@@ -81,14 +89,18 @@ extension ExchangeCell: ViewConfiguration {
     }
     
     func configureViews() {
-        backgroundColor = .clear
-        contentView.backgroundColor = Colors.offBackground.color
         iconImageView.contentMode = .scaleAspectFit
-        selectionStyle = .none
-        contentView.roundCorners(.allCorners, radius: .medium)
+        mainStackView.roundCorners(.allCorners, radius: .medium)
+        self.isUserInteractionEnabled = true
+        self.contentView.isUserInteractionEnabled = true
     }
     
     func configureStyles() {
+        backgroundColor = .clear
+        selectionStyle = .none
+
+        mainStackView.backgroundColor = Colors.offBackground.color
+        
         nameLabel.font = Typography.titleFont
         nameLabel.textColor = Colors.textPrimary.color
         

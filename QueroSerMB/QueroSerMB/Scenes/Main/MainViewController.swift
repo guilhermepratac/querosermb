@@ -53,7 +53,7 @@ extension MainViewController: MainDisplaying {
 // MARK: - ExchangeTableViewDelegate
 extension MainViewController: ExchangeTableViewDelegate {
     func tap(_ view: ExchangeListTableView, didSelect index: Int) {
-        print("Tap exchange")
+        interactor.didTapCell(index: index)
     }
 }
 

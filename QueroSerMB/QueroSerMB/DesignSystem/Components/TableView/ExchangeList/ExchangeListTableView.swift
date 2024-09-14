@@ -43,9 +43,9 @@ class ExchangeListTableView: UIView {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 40
+        tableView.estimatedRowHeight = 60
+        
         addSubview(tableView)
     }
     
@@ -72,7 +72,7 @@ class ExchangeListTableView: UIView {
 
 extension ExchangeListTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return model.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,7 +80,7 @@ extension ExchangeListTableView: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let model = model[indexPath.section]
+        let model = model[indexPath.row]
         cell.configure(with: model)
         
         return cell
@@ -88,24 +88,9 @@ extension ExchangeListTableView: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-
-extension ExchangeListTableView: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelect indexPath: IndexPath) {
+extension ExchangeListTableView: UITableViewDelegate {    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         delegate?.tap(self, didSelect: indexPath.row)
     }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return model.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return Spacing.space5
-    }
-
-   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-       let headerView = UIView()
-       headerView.backgroundColor = .clear
-       return headerView
-   }
 }

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol MainCoordinating: AnyObject {
-    func openSomething()
+    func openExchangeDetail(with id: String)
 }
 
 final class MainCoordinator {
@@ -11,7 +11,8 @@ final class MainCoordinator {
 
 // MARK: - MainCoordinating
 extension MainCoordinator: MainCoordinating {
-    func openSomething() {
-        // template
+    func openExchangeDetail(with id: String) {
+        let controller = DetailFactory.make(exchangeID: id)
+        viewController?.navigationController?.pushViewController(controller, animated: true)
     }
 }

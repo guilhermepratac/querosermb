@@ -2,7 +2,7 @@ import UIKit
 
 protocol MainPresenting: AnyObject {
     func presentExchangeList(exchanges: [Exchange], logos: [ExchangeLogo])
-    func didNextStep()
+    func presentDetail(with id: String)
 }
 
 final class MainPresenter {
@@ -16,6 +16,10 @@ final class MainPresenter {
 
 // MARK: - MainPresenting
 extension MainPresenter: MainPresenting {
+    func presentDetail(with id: String) {
+        coordinator.openExchangeDetail(with: id)
+    }
+    
     func presentExchangeList(exchanges: [Exchange], logos: [ExchangeLogo]) {
         let list = exchanges.map { model in
             let logo = logos.first(where: { $0.exchangeId == model.exchangeId })
@@ -24,10 +28,6 @@ extension MainPresenter: MainPresenting {
         }
         
         viewController?.displayExchanges(exchanges: list)
-    }
-    
-    func didNextStep() {
-        coordinator.openSomething()
     }
 }
 

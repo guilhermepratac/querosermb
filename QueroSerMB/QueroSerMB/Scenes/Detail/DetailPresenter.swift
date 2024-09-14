@@ -15,7 +15,12 @@ final class DetailPresenter {
 // MARK: - DetailPresenting
 extension DetailPresenter: DetailPresenting {
     func displaySomething() {
-        viewController?.displaySomething()
+        viewController?.displayDetail(
+            urlImage: "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_512/5503eb9673f9437988702f06cbd7072b.png",
+                                      name: "Bitcoin",
+                                      exchangeID: "ID",
+                                      price: "30 REAIS"
+        )
     }
     
     func didNextStep() {
