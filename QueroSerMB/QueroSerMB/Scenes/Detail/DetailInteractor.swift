@@ -20,7 +20,8 @@ final class DetailInteractor {
 // MARK: - DetailInteracting
 extension DetailInteractor: DetailInteracting {
     func load() {
-        self.presenter.displayDetail(with: self.exchange)
+        presenter.displayDetail(with: self.exchange)
+        presenter.displayLoading(with: true)
         
         let spot = "\(exchange.exchangeId)_SPOT_BTC_USD"
         let timeEnd = Date()
@@ -33,11 +34,13 @@ extension DetailInteractor: DetailInteracting {
             timeStart: timeStart.toString(format: .iso8601),
             timeEnd: timeEnd.toString(format: .iso8601)
         ) { result in
+            
+            self.presenter.displayLoading(with: false)
             switch result {
             case .success(let datas):
                 self.presenter.displayChart(with: datas)
             case .failure(let error):
-                print(error)
+                self.presenter.presentErrorChart(with: error)
             }
         }
     }

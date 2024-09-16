@@ -79,6 +79,24 @@ open class ViewController<Interactor>: UIViewController, ViewConfiguration {
             self.loadingView.stopAnimating()
         }
     }
+    
+    /// Método para exibir error
+    public func showError(_ error: ServiceError, _ completion: @escaping () -> Void ) {
+        let alertController = UIAlertController(title: error.title,
+                                                message: error.localizedDescription,
+                                                preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            completion()
+            self.dismiss(animated: true)
+        }
+
+        alertController.addAction(okAction)
+
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
 }
 
 public extension ViewController where Interactor == Void {

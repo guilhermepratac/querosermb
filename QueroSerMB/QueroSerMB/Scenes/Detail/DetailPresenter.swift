@@ -3,6 +3,8 @@ import Foundation
 protocol DetailPresenting: AnyObject {
     func displayDetail(with model: ExchangeDetail)
     func displayChart(with data: [OHLCVData])
+    func presentErrorChart(with error: ServiceError)
+    func displayLoading(with show: Bool)
 }
 
 final class DetailPresenter {
@@ -16,6 +18,18 @@ final class DetailPresenter {
 
 // MARK: - DetailPresenting
 extension DetailPresenter: DetailPresenting {
+    func displayLoading(with show: Bool) {
+        if show {
+            viewController?.displayLoading()
+        } else {
+            viewController?.dismissLoading()
+        }
+    }
+    
+    func presentErrorChart(with error: ServiceError) {
+        viewController?.displayChartError(title: error.title, message: error.localizedDescription, button: "Tente novamente")
+    }
+    
     func displayChart(with data: [OHLCVData]) {
         let chartData = data.map { data in
             return (data.timePeriodStart.toDate(format: .iso8601) ?? Date(), data.volumeTraded)

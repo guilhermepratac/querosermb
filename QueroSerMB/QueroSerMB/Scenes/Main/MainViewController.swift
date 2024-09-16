@@ -2,7 +2,7 @@ import UIKit
 
 protocol MainDisplaying: AnyObject {
     func displayExchanges(exchanges: [ExchangeCellModel])
-    
+    func showError(_ error: ServiceError)
     //Loading da ViewController Base
     func showLoading()
     func hideLoading()
@@ -56,6 +56,12 @@ final class MainViewController: ViewController<MainInteracting> {
 
 // MARK: - MainDisplaying
 extension MainViewController: MainDisplaying {
+    func showError(_ error: ServiceError) {
+        showError(error) { [weak self] in
+            self?.interactor.load()
+        }
+    }
+    
     func displayExchanges(exchanges: [ExchangeCellModel]) {
         exchangeTableView.updateData(exchanges)
     }

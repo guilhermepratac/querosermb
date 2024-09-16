@@ -3,6 +3,9 @@ import UIKit
 protocol DetailDisplaying: AnyObject {
     func displayDetail(with model: ExchangeInformationModel)
     func displayChart(data: [(Date, Double)])
+    func displayChartError(title: String, message: String, button: String?)
+    func displayLoading()
+    func dismissLoading()
 }
 
 private extension DetailViewController.Layout {
@@ -20,7 +23,9 @@ final class DetailViewController: ViewController<DetailInteracting> {
     private let exchangeIDLabel = UILabel()
     private let dailyVolumeLabel = UILabel()
     
+    private let loadingView = LoadingView()
     private let chartView = ExchangeChartView()
+    private let errorView = ModuleErrorView()
     private let valueLabel = UILabel()
     
     private let hourVolumeLabel = UILabel()
@@ -30,7 +35,7 @@ final class DetailViewController: ViewController<DetailInteracting> {
         let stackView = UIStackView(arrangedSubviews: [
             headerStackView,
             dailyVolumeLabel,
-            chartView,
+            moduleChartStackView,
             valueLabel,
             hourVolumeLabel,
             monthVolumeLabel
@@ -69,6 +74,12 @@ final class DetailViewController: ViewController<DetailInteracting> {
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.spacing = Spacing.space2
+        return stackView
+    }()
+    
+    
+    private lazy var moduleChartStackView: UIStackView = {
+        let stackView = UIStackView()
         return stackView
     }()
     
@@ -114,7 +125,7 @@ final class DetailViewController: ViewController<DetailInteracting> {
             iconImageView.widthAnchor.constraint(equalToConstant: 60),
             iconImageView.heightAnchor.constraint(equalToConstant: 60),
             
-            chartView.heightAnchor.constraint(equalToConstant: 300)
+            moduleChartStackView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
     
@@ -156,6 +167,33 @@ final class DetailViewController: ViewController<DetailInteracting> {
 
 // MARK: - DetailDisplaying
 extension DetailViewController: DetailDisplaying {
+    func dismissLoading() {
+        DispatchQueue.main.async {
+            self.loadingView.stopAnimating()
+            self.moduleChartStackView.removeArrangedSubview(self.loadingView)
+        }
+    }
+    
+    func displayLoading() {
+        DispatchQueue.main.async {
+            self.moduleChartStackView.addArrangedSubview(self.loadingView)
+            self.loadingView.startAnimating()
+        }
+    }
+    
+    func displayChartError(title: String, message: String, button: String?) {
+        DispatchQueue.main.async {
+            self.moduleChartStackView.removeAllArrangedSubviews()
+
+            self.errorView.configure(title: title, message: message, buttonText: button)
+            self.errorView.onTryAgainTapped = { [weak self] in
+                self?.interactor.load()
+            }
+            
+            self.moduleChartStackView.addArrangedSubview(self.errorView)
+        }
+    }
+    
     func displayDetail(with model: ExchangeInformationModel) {
         if let url = model.urlImage {
             iconImageView.loadImage(from: url)
@@ -169,6 +207,7 @@ extension DetailViewController: DetailDisplaying {
     
     func displayChart(data: [(Date, Double)]) {
         DispatchQueue.main.async {
+            self.moduleChartStackView.removeAllArrangedSubviews()
             self.chartView.data = data
             self.chartView.onPointSelected = { [weak self] date, value in
                 self?.updateValueLabel(date: date, value: value)

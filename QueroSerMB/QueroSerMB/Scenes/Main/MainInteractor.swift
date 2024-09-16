@@ -37,7 +37,12 @@ extension MainInteractor: MainInteracting {
                 self.presenter.presentExchangeList(exchanges: exchanges, logos: logos)
             } catch(let error) {
                 presenter.presentLoading(with: false)
-                print(error)
+                if let serviceError = error as? ServiceError {
+                    presenter.presentError(serviceError)
+                } else {
+                    let customError = ServiceError.errorUnknown
+                    presenter.presentError(customError)
+                }
             }
         }
     }

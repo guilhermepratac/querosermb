@@ -4,6 +4,7 @@ protocol MainPresenting: AnyObject {
     func presentExchangeList(exchanges: [Exchange], logos: [ExchangeLogo])
     func presentDetail(with exchange: Exchange, and logo: ExchangeLogo?)
     func presentLoading(with show: Bool)
+    func presentError(_ error: ServiceError)
 }
 
 final class MainPresenter {
@@ -17,6 +18,10 @@ final class MainPresenter {
 
 // MARK: - MainPresenting
 extension MainPresenter: MainPresenting {
+    func presentError(_ error: ServiceError) {
+        viewController?.showError(error)
+    }
+    
     func presentLoading(with show: Bool) {
         if show {
             viewController?.showLoading()
