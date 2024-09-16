@@ -3,6 +3,7 @@ import UIKit
 protocol MainPresenting: AnyObject {
     func presentExchangeList(exchanges: [Exchange], logos: [ExchangeLogo])
     func presentDetail(with exchange: Exchange, and logo: ExchangeLogo?)
+    func presentLoading(with show: Bool)
 }
 
 final class MainPresenter {
@@ -16,6 +17,14 @@ final class MainPresenter {
 
 // MARK: - MainPresenting
 extension MainPresenter: MainPresenting {
+    func presentLoading(with show: Bool) {
+        if show {
+            viewController?.showLoading()
+        } else {
+            viewController?.hideLoading()
+        }
+    }
+    
     func presentDetail(with exchange: Exchange, and logo: ExchangeLogo?) {
         let detail = ExchangeDetail(
             urlImage: logo?.url,

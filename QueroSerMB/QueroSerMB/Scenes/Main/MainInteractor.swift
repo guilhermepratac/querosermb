@@ -28,13 +28,16 @@ extension MainInteractor: MainInteracting {
     }
     
     func load() {
+        presenter.presentLoading(with: true)
         Task {
             do {
                 self.exchanges = try await service.loadExchanges()
                 self.logos = try await service.loadExchangesLogos()
+                presenter.presentLoading(with: false)
                 self.presenter.presentExchangeList(exchanges: exchanges, logos: logos)
             } catch(let error) {
-               print(error)
+                presenter.presentLoading(with: false)
+                print(error)
             }
         }
     }

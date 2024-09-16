@@ -19,6 +19,7 @@
 		921C80622C95E7EF00FF1E17 /* ExchangeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C80612C95E7EF00FF1E17 /* ExchangeDetail.swift */; };
 		921C80642C95FCEA00FF1E17 /* OHLCVData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C80632C95FCEA00FF1E17 /* OHLCVData.swift */; };
 		921C806A2C98AA9500FF1E17 /* ExchangeInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C80692C98AA9500FF1E17 /* ExchangeInformationModel.swift */; };
+		921C806D2C98B36200FF1E17 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C806C2C98B36200FF1E17 /* LoadingView.swift */; };
 		92D2C2012C90E6C000467440 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C2002C90E6C000467440 /* AppDelegate.swift */; };
 		92D2C2032C90E6C000467440 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2C2022C90E6C000467440 /* SceneDelegate.swift */; };
 		92D2C20A2C90E6C100467440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92D2C2092C90E6C100467440 /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 		921C80612C95E7EF00FF1E17 /* ExchangeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDetail.swift; sourceTree = "<group>"; };
 		921C80632C95FCEA00FF1E17 /* OHLCVData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OHLCVData.swift; sourceTree = "<group>"; };
 		921C80692C98AA9500FF1E17 /* ExchangeInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeInformationModel.swift; sourceTree = "<group>"; };
+		921C806C2C98B36200FF1E17 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		92D2C1FD2C90E6C000467440 /* QueroSerMB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QueroSerMB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D2C2002C90E6C000467440 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92D2C2022C90E6C000467440 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +181,14 @@
 				921C80692C98AA9500FF1E17 /* ExchangeInformationModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		921C806B2C98B35200FF1E17 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				921C806C2C98B36200FF1E17 /* LoadingView.swift */,
+			);
+			path = Loading;
 			sourceTree = "<group>";
 		};
 		92D2C1F42C90E6C000467440 = {
@@ -320,6 +330,7 @@
 		92D2C5E02C9113F300467440 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				921C806B2C98B35200FF1E17 /* Loading */,
 				921C80582C95CC7100FF1E17 /* Charts */,
 				92D2C5E12C9113FB00467440 /* TableView */,
 			);
@@ -501,6 +512,7 @@
 				921C806A2C98AA9500FF1E17 /* ExchangeInformationModel.swift in Sources */,
 				921C7CD12C94B7B100FF1E17 /* DetailInteractor.swift in Sources */,
 				921C805B2C95D25E00FF1E17 /* ExchangeChartView.swift in Sources */,
+				921C806D2C98B36200FF1E17 /* LoadingView.swift in Sources */,
 				921C7CD32C94B7B100FF1E17 /* DetailService.swift in Sources */,
 				92D2C5E62C9115CD00467440 /* ExchangeCellModel.swift in Sources */,
 				92D2C5DF2C91130300467440 /* UIColor+Hex.swift in Sources */,

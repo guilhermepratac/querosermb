@@ -5,6 +5,13 @@ open class ViewController<Interactor>: UIViewController, ViewConfiguration {
     /// O interator associado a esta ViewController.
     public var interactor: Interactor
 
+    /// O componente de loading
+    private lazy var loadingView: LoadingView = {
+        let view = LoadingView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     /// Inicializador padrão que aceita um interator.
     /// - Parameter interactor: O interator a ser associado a esta ViewController.
     public init(interactor: Interactor) {
@@ -27,6 +34,7 @@ open class ViewController<Interactor>: UIViewController, ViewConfiguration {
         print("NavigationDebug – " + String(describing: type(of: self)))
         #endif
         buildLayout()
+        setupLoadingView()
     }
 
     /// Método para construir a hierarquia de visualização.
@@ -43,6 +51,34 @@ open class ViewController<Interactor>: UIViewController, ViewConfiguration {
 
     /// Método para configurar as propriedades de acessibilidade da visualização.
     open func configureAccessibility() { }
+
+    /// Método para configurar a view de loading
+    private func setupLoadingView() {
+        view.addSubview(loadingView)
+        NSLayoutConstraint.activate([
+            loadingView.topAnchor.constraint(equalTo: view.topAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        loadingView.isHidden = true
+    }
+
+    /// Método para mostrar o loading
+    public func showLoading() {
+        DispatchQueue.main.async {
+            self.loadingView.isHidden = false
+            self.loadingView.startAnimating()
+        }
+    }
+
+    /// Método para esconder o loading
+    public func hideLoading() {
+        DispatchQueue.main.async {
+            self.loadingView.isHidden = true
+            self.loadingView.stopAnimating()
+        }
+    }
 }
 
 public extension ViewController where Interactor == Void {

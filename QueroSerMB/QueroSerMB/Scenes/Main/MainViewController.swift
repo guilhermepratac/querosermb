@@ -2,6 +2,10 @@ import UIKit
 
 protocol MainDisplaying: AnyObject {
     func displayExchanges(exchanges: [ExchangeCellModel])
+    
+    //Loading da ViewController Base
+    func showLoading()
+    func hideLoading()
 }
 
 private extension MainViewController.Layout {
