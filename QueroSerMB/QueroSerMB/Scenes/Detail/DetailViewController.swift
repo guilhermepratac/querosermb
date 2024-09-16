@@ -1,7 +1,7 @@
 import UIKit
 
 protocol DetailDisplaying: AnyObject {
-    func displayDetail(urlImage: String?, name: String, exchangeID: String, price: String)
+    func displayDetail(with model: ExchangeInformationModel)
     func displayChart(data: [(Date, Double)])
 }
 
@@ -12,24 +12,33 @@ private extension DetailViewController.Layout {
 
 final class DetailViewController: ViewController<DetailInteracting> {
     
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+
     private let iconImageView = UIImageView()
     private let nameLabel = UILabel()
     private let exchangeIDLabel = UILabel()
-    private let priceLabel = UILabel()
+    private let dailyVolumeLabel = UILabel()
     
     private let chartView = ExchangeChartView()
     private let valueLabel = UILabel()
     
+    private let hourVolumeLabel = UILabel()
+    private let monthVolumeLabel = UILabel()
+
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             headerStackView,
-            priceLabel,
+            dailyVolumeLabel,
             chartView,
-            valueLabel
+            valueLabel,
+            hourVolumeLabel,
+            monthVolumeLabel
         ])
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.spacing = Spacing.space2
+        stackView.spacing = Spacing.space3
+        
         return stackView
     }()
     
@@ -41,6 +50,14 @@ final class DetailViewController: ViewController<DetailInteracting> {
         stackView.axis = .horizontal
         stackView.alignment = .leading
         stackView.spacing = Spacing.space2
+        
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = UIEdgeInsets(
+            top: Spacing.space3,
+            left: Spacing.space3,
+            bottom: Spacing.space3,
+            right: Spacing.space3
+        )
         return stackView
     }()
     
@@ -66,17 +83,33 @@ final class DetailViewController: ViewController<DetailInteracting> {
     }
 
     override func buildViewHierarchy() { 
-        view.addSubview(contentStackView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(contentStackView)
     }
     
     override func setupConstraints() { 
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
         chartView.translatesAutoresizingMaskIntoConstraints = false
-        
+                
         NSLayoutConstraint.activate([
-            contentStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Spacing.space3),
-            contentStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Spacing.space3),
-            contentStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Spacing.space3),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Spacing.space3),
+            contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Spacing.space3),
+            contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Spacing.space3),
+            contentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Spacing.space3),
             
             iconImageView.widthAnchor.constraint(equalToConstant: 60),
             iconImageView.heightAnchor.constraint(equalToConstant: 60),
@@ -91,6 +124,8 @@ final class DetailViewController: ViewController<DetailInteracting> {
     
     override func configureStyles() {
         view.backgroundColor = Colors.background.color
+        headerStackView.backgroundColor = Colors.offBackground.color
+        headerStackView.roundCorners(.allCorners, radius: .medium)
         
         nameLabel.font = Typography.titleFont
         nameLabel.textColor = Colors.textPrimary.color
@@ -98,8 +133,14 @@ final class DetailViewController: ViewController<DetailInteracting> {
         exchangeIDLabel.font = Typography.captionFont
         exchangeIDLabel.textColor = Colors.textSecondary.color
         
-        priceLabel.font = Typography.bodyFont
-        priceLabel.textColor = Colors.textPrimary.color
+        dailyVolumeLabel.font = Typography.titleFont
+        dailyVolumeLabel.textColor = Colors.textPrimary.color
+        
+        hourVolumeLabel.font = Typography.titleFont
+        hourVolumeLabel.textColor = Colors.textPrimary.color
+        
+        monthVolumeLabel.font = Typography.titleFont
+        monthVolumeLabel.textColor = Colors.textPrimary.color
         
         valueLabel.font = Typography.bodyFont
         valueLabel.textColor = Colors.textPrimary.color
@@ -109,12 +150,23 @@ final class DetailViewController: ViewController<DetailInteracting> {
     private func updateValueLabel(date: Date, value: Double) {
         let dateString = date.toString(format: .displayFormat)
         
-        valueLabel.text = "Date: \(dateString), Price: \(value.toCurrency(.usd))"
+        valueLabel.text = "Data: \(dateString), Preço: \(value.toCurrency(.usd))"
     }
 }
 
 // MARK: - DetailDisplaying
 extension DetailViewController: DetailDisplaying {
+    func displayDetail(with model: ExchangeInformationModel) {
+        if let url = model.urlImage {
+            iconImageView.loadImage(from: url)
+        }
+        nameLabel.text = model.name
+        exchangeIDLabel.text = model.exchangeId
+        dailyVolumeLabel.text = model.dailyVolume
+        monthVolumeLabel.text = model.monthVolume
+        hourVolumeLabel.text = model.hourVolume
+    }
+    
     func displayChart(data: [(Date, Double)]) {
         DispatchQueue.main.async {
             self.chartView.data = data
@@ -122,14 +174,5 @@ extension DetailViewController: DetailDisplaying {
                 self?.updateValueLabel(date: date, value: value)
             }
         }
-    }
-    
-    func displayDetail(urlImage: String?, name: String, exchangeID: String, price: String) {
-        if let url = urlImage {
-            iconImageView.loadImage(from: url)
-        }
-        nameLabel.text = name
-        exchangeIDLabel.text = exchangeID
-        priceLabel.text = price
     }
 }

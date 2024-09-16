@@ -40,6 +40,13 @@ final class MainViewController: ViewController<MainInteracting> {
     override func configureViews() {
         exchangeTableView.delegate = self
         view.backgroundColor = Colors.background.color
+        navigationController?.navigationBar.backgroundColor = .clear
+        
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = Colors.background.color
+            navigationController?.navigationBar.standardAppearance = appearance
+        }
     }
 }
 

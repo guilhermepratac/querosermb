@@ -107,7 +107,7 @@ extension ExchangeCell: ViewConfiguration {
         exchangeIDLabel.font = Typography.captionFont
         exchangeIDLabel.textColor = Colors.textSecondary.color
         
-        priceLabel.font = Typography.bodyFont
+        priceLabel.font = Typography.subtitleFont
         priceLabel.textColor = Colors.textPrimary.color
         
     }

@@ -25,11 +25,15 @@ extension DetailPresenter: DetailPresenting {
     }
     
     func displayDetail(with model: ExchangeDetail) {
-        viewController?.displayDetail(
+        let data = ExchangeInformationModel(
             urlImage: model.urlImage,
             name: model.name,
-            exchangeID: model.exchangeId,
-            price: model.dailyVolumeUsd
+            exchangeId: "ID: \(model.exchangeId)",
+            hourVolume: "Volume de última hora: \(model.hourVolumeUsd)",
+            dailyVolume: "Volume de último dia: \(model.hourVolumeUsd)",
+            monthVolume: "Volume de último mês: \(model.monthVolumeUsd)"
         )
+        
+        viewController?.displayDetail(with: data)
     }
 }

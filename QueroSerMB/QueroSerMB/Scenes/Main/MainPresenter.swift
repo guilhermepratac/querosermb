@@ -46,7 +46,7 @@ extension MainPresenter {
             icon: logo,
             name: exchange.name ?? " ",
             exchange: exchange.exchangeId,
-            price: "\(exchange.dailyVolumeUsd)"
+            price: exchange.dailyVolumeUsd.toCurrency()
         )
     }
 }
