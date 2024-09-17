@@ -22,6 +22,8 @@ class LoadingView: UIView {
 
     private func setupView() {
         backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        accessibilityIdentifier = "LoadingIndicator"
+
         addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

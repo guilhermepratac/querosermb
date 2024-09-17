@@ -213,6 +213,7 @@ extension DetailViewController: DetailDisplaying {
     func displayChart(data: [(Date, Double)]) {
         DispatchQueue.main.async {
             self.moduleChartStackView.removeAllArrangedSubviews()
+            self.moduleChartStackView.addArrangedSubview(self.chartView)
             self.chartView.data = data
             self.chartView.onPointSelected = { [weak self] date, value in
                 self?.updateValueLabel(date: date, value: value)

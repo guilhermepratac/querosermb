@@ -35,13 +35,38 @@ extension DetailInteractor: DetailInteracting {
             timeEnd: timeEnd.toString(format: .iso8601)
         ) { result in
             
+            switch result {
+            case .success(let datas):
+                self.presenter.displayLoading(with: false)
+                self.presenter.displayChart(with: datas)
+            case .failure:
+                self.getSpotUSDT()
+            }
+        }
+    }
+    
+    func getSpotUSDT() {
+        let spot = "\(exchange.exchangeId)_SPOT_BTC_USDC"
+        let timeEnd = Date()
+        guard let timeStart = Calendar.current.date(byAdding: .day, value: -1, to: timeEnd) else {
+            return
+        }
+        
+        service.getOhlcv(
+            spot: spot,
+            timeStart: timeStart.toString(format: .iso8601),
+            timeEnd: timeEnd.toString(format: .iso8601)
+        ) { result in
+            
             self.presenter.displayLoading(with: false)
             switch result {
             case .success(let datas):
+                self.presenter.displayLoading(with: false)
                 self.presenter.displayChart(with: datas)
             case .failure(let error):
                 self.presenter.presentErrorChart(with: error)
             }
         }
     }
+    
 }
