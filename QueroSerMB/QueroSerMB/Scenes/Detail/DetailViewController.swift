@@ -131,6 +131,10 @@ final class DetailViewController: ViewController<DetailInteracting> {
     
     override func configureViews() {
         iconImageView.contentMode = .scaleAspectFit
+        view.accessibilityIdentifier = "DetailView"
+        nameLabel.accessibilityIdentifier = "ExchangeName"
+        exchangeIDLabel.accessibilityIdentifier = "ExchangeID"
+        dailyVolumeLabel.accessibilityIdentifier = "DailyVolume"
     }
     
     override func configureStyles() {
@@ -163,6 +167,7 @@ final class DetailViewController: ViewController<DetailInteracting> {
         
         valueLabel.text = "Data: \(dateString), Preço: \(value.toCurrency(.usd))"
     }
+    
 }
 
 // MARK: - DetailDisplaying

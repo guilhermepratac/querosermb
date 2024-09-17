@@ -21,42 +21,11 @@ class ExchangeListTableView: UIView {
     override init(frame: CGRect) {
         self.tableView = UITableView(frame: .zero, style: .plain)
         super.init(frame: frame)
-        setupView()
+        buildLayout()
     }
     
     required init?(coder: NSCoder) {
-        self.tableView = UITableView(frame: .zero, style: .plain)
-        super.init(coder: coder)
-        setupView()
-    }
-    
-    // MARK: - Setup
-    
-    private func setupView() {
-        backgroundColor = Colors.background.color
-        setupTableView()
-        setupConstraints()
-    }
-    
-    private func setupTableView() {
-        tableView.register(ExchangeCell.self, forCellReuseIdentifier: ExchangeCell.identifier)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.backgroundColor = .clear
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 60
-        
-        addSubview(tableView)
-    }
-    
-    private func setupConstraints() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Public Methods
@@ -68,8 +37,40 @@ class ExchangeListTableView: UIView {
     }
 }
 
-// MARK: - UITableViewDataSource
+extension ExchangeListTableView: ViewConfiguration {
+    func buildViewHierarchy() {
+        addSubview(tableView)
+    }
+    
+    func setupConstraints() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    func configureViews() {
+        tableView.register(ExchangeCell.self, forCellReuseIdentifier: ExchangeCell.identifier)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = .clear
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 60
+    }
+    
+    func configureStyles() {
+        backgroundColor = Colors.background.color
+    }
+    
+    func configureAccessibility() {
+        tableView.accessibilityIdentifier = "ExchangeListTable"
+    }
+}
 
+// MARK: - UITableViewDataSource
 extension ExchangeListTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model.count

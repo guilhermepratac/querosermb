@@ -114,6 +114,16 @@ extension ExchangeCell: ViewConfiguration {
     
     func configureAccessibility() {
         isAccessibilityElement = true
+        accessibilityIdentifier = "ExchangeCell"
+
         accessibilityLabel = "\(nameLabel.text ?? ""), \(exchangeIDLabel.text ?? ""), Preço: \(priceLabel.text ?? "")"
+        
+        iconImageView.accessibilityIdentifier = "ExchangeIconImageView"
+        
+        nameLabel.accessibilityIdentifier = "ExchangeNameLabel"
+        exchangeIDLabel.accessibilityIdentifier = "ExchangeIDLabel"
+        priceLabel.accessibilityIdentifier = "ExchangeValueLabel"
     }
+    
+    
 }
