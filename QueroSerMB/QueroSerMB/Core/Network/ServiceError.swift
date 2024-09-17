@@ -7,11 +7,12 @@
 
 import Foundation
 
-public enum ServiceError: Error {
+public enum ServiceError: Error, Equatable {
     case requestFailed(description: String)
     case emptyData
     case decodeError
     case errorUnknown
+    case outOfBounds
 
     var localizedDescription: String {
         switch self {
@@ -21,6 +22,8 @@ public enum ServiceError: Error {
             return "Erro na requisição: \(description)"
         case .decodeError:
             return "Não pode decodificar"
+        case .outOfBounds:
+            return "Dado não encontrado"
         }
     }
     

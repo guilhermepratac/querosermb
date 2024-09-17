@@ -21,6 +21,10 @@ final class MainInteractor {
 // MARK: - MainInteracting
 extension MainInteractor: MainInteracting {
     func didTapCell(index: Int) {
+        if index >= exchanges.count {
+            presenter.presentError(ServiceError.outOfBounds)
+            return
+        }
         let exchange = exchanges[index]
         let logo = logos.first(where: { $0.exchangeId == exchange.exchangeId })
 

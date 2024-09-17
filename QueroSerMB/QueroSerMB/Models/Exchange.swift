@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Exchange: Decodable, Equatable {
+struct Exchange: Codable, Equatable {
     let name: String?
     let exchangeId: String
     let dailyVolumeUsd: Double
